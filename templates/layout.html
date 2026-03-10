@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Movie Rental System</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZI5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'styles.css'%}">
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="headers"> 
+            <br/>
+            <img src="{% static 'movie.jpeg' %}" alt="Logo" width="300" height="300">
+            <h2>Movie Rental</h2>
+            
+            <a href="#">Home</a> | 
+            <a href="#">Movies</a> | 
+            <a href="#">Login</a>
+            <br/><br/>
+            <hr> </div>
+
+        {% block body %}
+        {% endblock %}
+        
+    </div>
+
+</body>
+</html>
