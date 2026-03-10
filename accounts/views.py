@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import RegisterForm
@@ -6,7 +7,7 @@ from .forms import RegisterForm
 
 def index(request):
 
-    return redirect('login')
+    return HttpResponseRedirect('login')
 
 def signUp(request):
 
@@ -19,7 +20,7 @@ def signUp(request):
             user.save()
 
             messages.success(request," The account created successfully !!")
-            return redirect('login')
+            return HttpResponseRedirect('login')
 
     else:
         form = RegisterForm()
@@ -37,7 +38,7 @@ def loginV(request):
 
         if u is not None:
             login(request,u)
-            return redirect('movies')
+            return HttpResponseRedirect('movies')
 
         else:
             messages.error(request,"Incorect username or password try agin ")
@@ -47,4 +48,4 @@ def loginV(request):
 
 def logoutV(request):
     logout(request)
-    return redirect('login')
+    return HttpResponseRedirect('login')
