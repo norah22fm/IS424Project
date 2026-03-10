@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends 'layout.html' %}
+<html>
+<head>   
+    <title>signUp</title>
+</head>
+<body>
+    <h2>signUp</h2>
+
+<form method="POST">
+{% csrf_token %}
+
+{{ form.as_p }}
+
+<button type="submit">signUp</button>
+
+</form>
+
+<a href="/login/">Back to login</a>
+</body>
+</html>
