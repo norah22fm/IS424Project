@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import RegisterForm
+from .models import Movie
+from .forms import MovieForm
 # Create your views here.
 
 def index(request):
@@ -48,3 +50,19 @@ def loginV(request):
 def logoutV(request):
     logout(request)
     return redirect('login')
+
+
+def movies(request):
+    movies = Movie.objects.all()
+    return render(request, 'movies_list.html', {'movies': movies})
+
+def add_movie(request):
+    if request.method == "POST":
+        form = MovieForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('movies')
+    else:
+        form = MovieForm()
+
+    return render(request, 'add_movie.html', {'form': form})

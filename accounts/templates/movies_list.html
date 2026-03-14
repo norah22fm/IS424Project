@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h1>Movies List</h1>
+
+<a href="{% url 'add_movie' %}">Add Movie</a>
+
+<table border="1">
+<tr>
+<th>Title</th>
+<th>Genre</th>
+<th>Year</th>
+</tr>
+
+{% for movie in movies %}
+<tr>
+<td><a href="#">{{ movie.title }}</a></td>
+<td>{{ movie.genre }}</td>
+<td>{{ movie.release_year }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}
