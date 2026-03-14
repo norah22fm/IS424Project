@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container mt-1" style="max-width: 450px;">
+    
+    <div class="card shadow-sm p-4 border-0" style="border-radius: 12px;">
+        <h2 class="text-center font-weight-bold mb-4" style="font-size: 1.6rem; color: #2c3e50;">Sign Up</h2>
+        
+        <form method="POST">
+            {% csrf_token %}
+            
+            {% for field in form %}
+                <div class="form-group mb-2"> <label class="font-weight-bold" style="font-size: 1.1rem; color: #333;">{{ field.label }}:</label>
+                    <div class="form-control-wrapper"> {{ field }} </div>
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-success btn-block mt-3 shadow-sm" style="font-weight: 600; color: #fff; padding: 8px; border-radius: 8px;">
+                Register
+            </button>
+            
+            <p class="text-center mt-3 mb-0" style="font-size: 0.9rem;">
+                Already have an account? <a href="{% url 'login' %}" class="text-primary font-weight-bold">Login</a>
+            </p>
+        </form>
+    </div>
+</div>
+
+<style>
+    input { 
+        width: 100%; 
+        display: block; 
+        padding: 8px 12px; 
+        margin-top: 2px; 
+        border: 1px solid #ddd; 
+        border-radius: 8px; 
+        font-size: 1rem;
+        background-color: #fcfcfc;
+    }
+    input:focus {
+        outline: none;
+        border-color: #28a745;
+        box-shadow: 0 0 5px rgba(40, 167, 69, 0.1);
+    }
+    label { margin-bottom: 0px; }
+</style>
+{% endblock %}

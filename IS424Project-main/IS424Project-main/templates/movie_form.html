@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="container mt-1">
+    <div class="card shadow-sm p-4 border-0 mx-auto" style="border-radius: 12px; max-width: 550px; background-color: #fff;">
+        
+        <h5 class="text-center font-weight-bold mb-4" style="color: #2c3e50; font-size: 1.4rem;">{{ title }}</h5>
+        
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="form-grid">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label font-weight-bold" style="font-size: 1.1rem; color: #333;">Title:</label>
+                    <div class="col-sm-9"> {{ form.title }} </div>
+                </div>
+
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label font-weight-bold" style="font-size: 1.1rem; color: #333;">Genre:</label>
+                    <div class="col-sm-9"> {{ form.genre }} </div>
+                </div>
+
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label font-weight-bold" style="font-size: 1.1rem; color: #333;">Year:</label>
+                    <div class="col-sm-9"> {{ form.release_year }} </div>
+                </div>
+
+                <div class="form-group row mb-4 align-items-start">
+                    <label class="col-sm-3 col-form-label font-weight-bold pt-1" style="font-size: 1.1rem; color: #333;">Info:</label>
+                    <div class="col-sm-9"> {{ form.description }} </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center mt-2">
+                <button type="submit" class="btn btn-primary shadow-sm mx-1" 
+                        style="font-size: 0.85rem; font-weight: 600; color: #fff; padding: 5px 25px; border-radius: 6px; border: none;">
+                    Save
+                </button>
+                
+                <a href="{% url 'movies_list' %}" class="btn btn-secondary mx-1" 
+                   style="font-size: 0.85rem; padding: 5px 25px; border-radius: 6px; border: none;">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    input, textarea, select { 
+        width: 100%; 
+        padding: 8px 12px; 
+        font-size: 1rem; 
+        border: 1px solid #ddd; 
+        border-radius: 8px;
+        background-color: #fcfcfc;
+    }
+    textarea { height: 100px; resize: none; }
+    
+    input:focus, textarea:focus {
+        border-color: #007bff;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.1);
+    }
+</style>
+
+{% endblock %}
