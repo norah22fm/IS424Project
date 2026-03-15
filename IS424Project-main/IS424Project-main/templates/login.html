@@ -2,42 +2,62 @@
 
 {% block body %}
 <div class="container mt-2" style="max-width: 400px;">
-    <div class="card shadow-sm p-4 border-0" style="border-radius: 15px;">
-        
-        <h2 class="text-center font-weight-bold mb-4" style="font-size: 1.5rem; color: #2c3e50;">Login</h2>
-        
+    <div class="card login-card shadow-sm p-4 border-0">
+
+        <h2 class="login-title text-center mb-4">Login</h2>
+
         <form method="POST">
             {% csrf_token %}
-            
+
             <div class="form-group mb-3">
-                <input type="text" name="username" class="form-control custom-input" placeholder="Username" required>
+                <input type="text" name="username" class="form-control login-input" placeholder="Username" required>
             </div>
-            
+
             <div class="form-group mb-3">
-                <input type="password" name="password" class="form-control custom-input" placeholder="Password" required>
+                <input type="password" name="password" class="form-control login-input" placeholder="Password" required>
             </div>
-            
-            <button type="submit" class="btn btn-primary btn-block shadow-sm" style="font-weight: 600; color: #fff; padding: 10px;">
+
+            <button type="submit" class="btn btn-primary btn-block login-btn shadow-sm">
                 Login
             </button>
         </form>
-        
-        <p class="mt-3 text-center mb-0" style="font-size: 0.85rem;">
+
+        <p class="login-note mt-3 text-center mb-0">
             Don't have an account? <a href="{% url 'signUp' %}" class="text-primary font-weight-bold">Sign Up</a>
         </p>
     </div>
 </div>
 
 <style>
-    /* تنسيق الحقول لتكون أنحف وأرتب مثل بقية الصفحات */
-    .custom-input { 
-        padding: 10px 15px; 
-        font-size: 0.9rem; 
-        border: 1px solid #ddd; 
+    .login-card {
+        border-radius: 15px;
+    }
+
+    .login-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    .login-btn {
+        padding: 10px;
+        font-weight: 600;
+        color: white;
+    }
+
+    .login-note {
+        font-size: 0.85rem;
+    }
+
+    .login-input {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        border: 1px solid #ddd;
         border-radius: 8px;
         background-color: #fcfcfc;
     }
-    .custom-input:focus {
+
+    .login-input:focus {
         border-color: #007bff;
         box-shadow: 0 0 5px rgba(0, 123, 255, 0.1);
     }
