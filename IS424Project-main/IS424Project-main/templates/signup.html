@@ -1,25 +1,26 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<div class="container mt-1" style="max-width: 450px;">
-    
-    <div class="card shadow-sm p-4 border-0" style="border-radius: 12px;">
-        <h2 class="text-center font-weight-bold mb-4" style="font-size: 1.6rem; color: #2c3e50;">Sign Up</h2>
-        
+<div class="container mt-1 signup-container">
+
+    <div class="card signup-card shadow-sm p-4 border-0">
+        <h2 class="signup-title text-center mb-4">Sign Up</h2>
+
         <form method="POST">
             {% csrf_token %}
-            
+
             {% for field in form %}
-                <div class="form-group mb-2"> <label class="font-weight-bold" style="font-size: 1.1rem; color: #333;">{{ field.label }}:</label>
-                    <div class="form-control-wrapper"> {{ field }} </div>
+                <div class="form-group mb-2">
+                    <label class="signup-label font-weight-bold">{{ field.label }}:</label>
+                    <div class="form-control-wrapper">{{ field }}</div>
                 </div>
             {% endfor %}
 
-            <button type="submit" class="btn btn-success btn-block mt-3 shadow-sm" style="font-weight: 600; color: #fff; padding: 8px; border-radius: 8px;">
+            <button type="submit" class="btn btn-success btn-block signup-btn mt-3 shadow-sm">
                 Register
             </button>
-            
-            <p class="text-center mt-3 mb-0" style="font-size: 0.9rem;">
+
+            <p class="signup-note text-center mt-3 mb-0">
                 Already have an account? <a href="{% url 'login' %}" class="text-primary font-weight-bold">Login</a>
             </p>
         </form>
@@ -27,21 +28,52 @@
 </div>
 
 <style>
-    input { 
-        width: 100%; 
-        display: block; 
-        padding: 8px 12px; 
-        margin-top: 2px; 
-        border: 1px solid #ddd; 
-        border-radius: 8px; 
+    .signup-container {
+        max-width: 450px;
+    }
+
+    .signup-card {
+        border-radius: 12px;
+    }
+
+    .signup-title {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    .signup-label {
+        margin-bottom: 0;
+        font-size: 1.1rem;
+        color: #333;
+    }
+
+    .signup-btn {
+        padding: 8px;
+        font-weight: 600;
+        color: white;
+        border-radius: 8px;
+    }
+
+    .signup-note {
+        font-size: 0.9rem;
+    }
+
+    input {
+        width: 100%;
+        display: block;
+        margin-top: 2px;
+        padding: 8px 12px;
         font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
         background-color: #fcfcfc;
     }
+
     input:focus {
         outline: none;
         border-color: #28a745;
         box-shadow: 0 0 5px rgba(40, 167, 69, 0.1);
     }
-    label { margin-bottom: 0px; }
 </style>
 {% endblock %}
