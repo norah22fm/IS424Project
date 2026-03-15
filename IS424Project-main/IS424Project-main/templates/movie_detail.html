@@ -2,57 +2,122 @@
 
 {% block body %}
 <div class="container mt-1">
-    <div class="card shadow-sm p-3 mx-auto border-0" style="max-width: 1000px; border-radius: 12px; background-color: #fff;">
-        
+    <div class="card movie-card shadow-sm p-3 mx-auto border-0">
+
         <div class="d-flex justify-content-between align-items-center mb-1">
             <div>
-                <h2 class="font-weight-bold mb-0" style="font-size: 1.8rem; color: #2c3e50;">{{ movie.title }}</h2>
-                <p class="text-muted mb-0" style="font-size: 0.95rem;">{{ movie.genre }} | {{ movie.release_year }}</p>
+                <h2 class="movie-title mb-0">{{ movie.title }}</h2>
+                <p class="movie-meta text-muted mb-0">{{ movie.genre }} | {{ movie.release_year }}</p>
             </div>
-            
-            <div class="badge badge-warning px-3 py-2" style="font-size: 0.9rem; border-radius: 8px; background-color: #f1c40f;">
+
+            <div class="badge movie-rating px-3 py-2">
                 Avg: ⭐ <span class="font-weight-bold">{{ movie.get_avg_rating }}</span>
             </div>
         </div>
 
-        <hr style="margin-top: 8px; margin-bottom: 10px;">
+        <hr class="movie-divider">
 
         <div class="movie-description mb-3">
-            <p class="mb-0" style="font-size: 1.05rem; line-height: 1.5; color: #444;">
+            <p class="movie-text mb-0">
                 {{ movie.description }}
             </p>
         </div>
 
-        <div class="rating-section p-3 bg-light rounded mb-3">
-            <h6 class="font-weight-bold mb-2" style="font-size: 0.95rem;">Rate this movie:</h6>
+        <div class="rating-box p-3 bg-light rounded mb-3">
+            <h6 class="rating-title mb-2">Rate this movie:</h6>
             <form method="POST" class="form-inline">
                 {% csrf_token %}
-                <select name="rating" class="form-control form-control-sm mr-2" style="font-size: 0.85rem; height: 35px; width: 100px;">
+                <select name="rating" class="form-control form-control-sm rating-select mr-2">
                     <option value="1">1 Star</option>
                     <option value="2">2 Stars</option>
                     <option value="3">3 Stars</option>
                     <option value="4">4 Stars</option>
                     <option value="5">5 Stars</option>
                 </select>
-                <button type="submit" class="btn btn-success btn-sm px-3" style="font-weight: 600; font-size: 0.85rem; height: 35px;">
+                <button type="submit" class="btn btn-success btn-sm rating-btn px-3">
                     Update Rating
                 </button>
             </form>
         </div>
 
         <div class="d-flex justify-content-between align-items-center">
-            <a href="{% url 'movies_list' %}" class="btn btn-outline-secondary btn-sm px-3" style="font-size: 0.85rem; height: 32px; line-height: 22px;">
+            <a href="{% url 'movies_list' %}" class="btn btn-outline-secondary btn-sm back-btn px-3">
                ← Back
             </a>
+
             <div class="d-flex">
-                <a href="{% url 'update_movie' movie.id %}" class="btn btn-primary btn-sm px-3 shadow-sm mr-2" style="font-weight: 600; color: #fff; font-size: 0.85rem; height: 32px; line-height: 22px;">
+                <a href="{% url 'update_movie' movie.id %}" class="btn btn-primary btn-sm action-btn px-3 shadow-sm mr-2">
                     Update Info
                 </a>
-                <a href="{% url 'delete_movie' movie.id %}" class="btn btn-danger btn-sm px-3 shadow-sm" style="font-weight: 600; font-size: 0.85rem; height: 32px; line-height: 22px;">
+                <a href="{% url 'delete_movie' movie.id %}" class="btn btn-danger btn-sm action-btn px-3 shadow-sm">
                     Delete
                 </a>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .movie-card {
+        max-width: 1000px;
+        border-radius: 12px;
+        background-color: white;
+    }
+
+    .movie-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    .movie-meta {
+        font-size: 0.95rem;
+    }
+
+    .movie-rating {
+        font-size: 0.9rem;
+        border-radius: 8px;
+        background-color: #f1c40f;
+    }
+
+    .movie-divider {
+        margin-top: 8px;
+        margin-bottom: 10px;
+    }
+
+    .movie-text {
+        font-size: 1.05rem;
+        line-height: 1.5;
+        color: #444;
+    }
+
+    .rating-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+    }
+
+    .rating-select {
+        width: 100px;
+        height: 35px;
+        font-size: 0.85rem;
+    }
+
+    .rating-btn {
+        height: 35px;
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
+
+    .back-btn,
+    .action-btn {
+        height: 32px;
+        font-size: 0.85rem;
+        line-height: 22px;
+    }
+
+    .action-btn {
+        font-weight: 600;
+        color: white;
+    }
+</style>
 {% endblock %}
