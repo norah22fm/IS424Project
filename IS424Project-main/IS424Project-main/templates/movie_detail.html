@@ -11,8 +11,19 @@
             </div>
 
             <div class="badge movie-rating px-3 py-2">
-                Avg: ⭐ <span class="font-weight-bold">{{ movie.get_avg_rating }}</span>
-            </div>
+    Avg: ⭐ <span class="font-weight-bold">{{ movie.get_avg_rating }}</span>
+</div>
+
+{% if user.is_authenticated %}
+    <div class="mt-2">
+        <strong>My Rating:</strong>
+        {% if user_rating %}
+            ⭐ {{ user_rating.rating }}
+        {% else %}
+            Not rated yet
+        {% endif %}
+    </div>
+{% endif %}
         </div>
 
         <hr class="movie-divider">
