@@ -69,22 +69,28 @@
             {% endif %}
 
             <nav class="menu-bar mt-2 shadow-sm border">
-                <div class="d-flex justify-content-center align-items-center">
-                    <a href="{% url 'movies_list' %}" class="btn btn-link text-dark">Movies List</a>
+    <div class="d-flex justify-content-center align-items-center">
 
-                    <span class="separator">|</span>
+        <a href="{% url 'movies_list' %}" class="btn btn-link text-dark">Movies List</a>
 
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'logout' %}" class="btn btn-link text-danger">Logout</a>
-                    {% else %}
-                        <a href="{% url 'login' %}" class="btn btn-link text-dark">Login</a>
+        <span class="separator">|</span>
 
-                        <span class="separator">|</span>
+        {% if user.is_authenticated %}
+            <a href="{% url 'add_movie' %}" class="btn btn-link text-success">+ Add Movie</a>
 
-                        <a href="{% url 'signUp' %}" class="btn btn-link text-dark">Sign Up</a>
-                    {% endif %}
-                </div>
-            </nav>
+            <span class="separator">|</span>
+
+            <a href="{% url 'logout' %}" class="btn btn-link text-danger">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-link text-dark">Login</a>
+
+            <span class="separator">|</span>
+
+            <a href="{% url 'signUp' %}" class="btn btn-link text-dark">Sign Up</a>
+        {% endif %}
+
+    </div>
+</nav>
 
             <hr class="divider">
         </div>
