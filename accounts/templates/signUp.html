@@ -1,21 +1,15 @@
-<!DOCTYPE html>
 {% extends 'layout.html' %}
-<html>
-<head>   
-    <title>signUp</title>
-</head>
-<body>
-    <h2>signUp</h2>
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<h2>Sign Up</h2>
 
 <form method="POST">
-{% csrf_token %}
-
-{{ form.as_p }}
-
-<button type="submit">signUp</button>
-
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sign Up</button>
 </form>
 
 <a href="/login/">Back to login</a>
-</body>
-</html>
+{% endblock %}
