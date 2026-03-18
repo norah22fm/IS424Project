@@ -2,32 +2,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Movie Rental System</title>
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZI5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'styles.css'%}">
+    <title>Movie Rental System</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+    <style>
+        .welcome-text {
+            margin-top: 5px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .menu-bar {
+            max-width: 320px;
+            margin: 0 auto;
+            padding: 4px 12px;
+            background-color: #f8f9fa;
+            border-radius: 40px;
+        }
+
+        .menu-bar .btn-link {
+            padding: 2px 10px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none !important;
+        }
+
+        .page-title {
+            margin: 5px 0;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .divider {
+            margin: 10px 0;
+        }
+
+        .separator {
+            margin: 0 6px;
+            font-size: 1.1rem;
+            color: #888;
+        }
+    </style>
 </head>
 <body>
+    <div class="container text-center mt-1">
+        <div class="header-section">
+            <img
+                src="{% static 'movie.jpeg' %}"
+                alt="Movie Rental Logo"
+                width="180"
+                height="180"
+                class="rounded-circle shadow-sm"
+            >
 
-    <div class="container">
-        
-        <div class="headers"> 
-            <br/>
-            <img src="{% static 'movie.jpeg' %}" alt="Logo" width="300" height="300">
-            <h2>Movie Rental</h2>
-            
-            <a href="#">Home</a> | 
-            <a href="#">Movies</a> | 
-            <a href="#">Login</a>
-            <br/><br/>
-            <hr> </div>
+            <h2 class="page-title">Movie Rental System</h2>
 
-        {% block body %}
-        {% endblock %}
-        
+            {% if user.is_authenticated %}
+                <div class="welcome-text">
+                    Welcome back,
+                    <span class="text-primary" style="font-size: 1.4rem;">{{ user.username }}</span>!
+                </div>
+            {% endif %}
+
+            <nav class="menu-bar mt-2 shadow-sm border">
+                <div class="d-flex justify-content-center align-items-center">
+                    <a href="{% url 'movies_list' %}" class="btn btn-link text-dark">Movies List</a>
+
+                    <span class="separator">|</span>
+
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'logout' %}" class="btn btn-link text-danger">Logout</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-link text-dark">Login</a>
+
+                        <span class="separator">|</span>
+
+                        <a href="{% url 'signUp' %}" class="btn btn-link text-dark">Sign Up</a>
+                    {% endif %}
+                </div>
+            </nav>
+
+            <hr class="divider">
+        </div>
+
+        <div class="main-content text-left">
+            {% block body %}
+            {% endblock %}
+        </div>
     </div>
-
 </body>
 </html>
