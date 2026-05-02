@@ -7,4 +7,5 @@ urlpatterns = [
     path('add/', views.add_movie, name='add_movie'),
     path('update/<int:movie_id>/', views.update_movie, name='update_movie'),
     path('delete/<int:movie_id>/', views.delete_movie, name='delete_movie'),
+    path('my_ratings/', views.my_ratings, name='my_ratings'),
 ]
