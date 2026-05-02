@@ -11,22 +11,16 @@
             </div>
 
             <div class="badge movie-rating px-3 py-2">
-    Avg: ⭐ <span class="font-weight-bold">{{ movie.get_avg_rating }}</span>
-</div>
-
-{% if user.is_authenticated %}
-    <div class="mt-2">
-        <strong>My Rating:</strong>
-        {% if user_rating %}
-            ⭐ {{ user_rating.rating }}
-        {% else %}
-            Not rated yet
-        {% endif %}
-    </div>
-{% endif %}
+                Avg: ⭐ <span class="font-weight-bold">{{ movie.get_avg_rating }}</span>
+            </div>
         </div>
 
         <hr class="movie-divider">
+        {% if movie.image %}
+    <div class="text-center mb-3">
+        <img src="{{ movie.image.url }}" alt="{{ movie.title }}" class="movie-image shadow-sm">
+    </div>
+{% endif %}
 
         <div class="movie-description mb-3">
             <p class="movie-text mb-0">
@@ -50,6 +44,22 @@
                 </button>
             </form>
         </div>
+        <div class="all-ratings mb-3">
+    <h6 class="rating-title">All Ratings:</h6>
+
+    {% if ratings %}
+        <ul class="list-group">
+            {% for r in ratings %}
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>{{ r.user.username }}</span>
+                    <span>⭐ {{ r.rating }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted mb-0">No ratings yet.</p>
+    {% endif %}
+</div>
 
         <div class="d-flex justify-content-between align-items-center">
             <a href="{% url 'movies_list' %}" class="btn btn-outline-secondary btn-sm back-btn px-3">
@@ -130,5 +140,11 @@
         font-weight: 600;
         color: white;
     }
+
+    .movie-image {
+    max-width: 300px;
+    height: auto;
+    border-radius: 12px;
+}
 </style>
 {% endblock %}
