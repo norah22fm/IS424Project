@@ -6,8 +6,7 @@
 
         <h5 class="form-title text-center mb-4">{{ title }}</h5>
 
-        <form method="POST">
-            {% csrf_token %}
+        <form method="POST" enctype="multipart/form-data">            {% csrf_token %}
 
             <div class="form-grid">
                 <div class="form-group row mb-3">
