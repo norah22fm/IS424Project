@@ -6,12 +6,16 @@ class Movie(models.Model):
     genre = models.CharField(max_length=100)
     release_year = models.IntegerField()
     description = models.TextField()
+    image = models.ImageField(upload_to='movies/', blank=True, null=True)
 
     def __str__(self):
         return self.title
+
     def get_avg_rating(self):
         avg = self.rating_set.aggregate(models.Avg('rating'))['rating__avg']
         return round(avg, 1) if avg else 0.0
+
+
 class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
