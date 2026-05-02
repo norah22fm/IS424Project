@@ -19,8 +19,9 @@ def signUp(request):
             return redirect('login')
     else:
         form = RegisterForm()
-
-    return render(request, 'signup.html', {'form': form})
+    
+  
+    return render(request, 'signUp.html', {'form': form})
 
 
 def loginV(request):
@@ -32,7 +33,8 @@ def loginV(request):
 
         if u is not None:
             login(request, u)
-            return redirect('movies_list')
+        
+            return redirect('movies_list') 
         else:
             messages.error(request, "Incorrect username or password. Please try again.")
 
